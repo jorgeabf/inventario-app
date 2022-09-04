@@ -3,7 +3,7 @@ import { useContext, createContext, useState } from "react";
 const AppContext = createContext({
    items: [],
    addNewItem: (item) => {},
-   updateItem: (item) => {},
+   updateItem: (updateItem) => {},
    removeItem: (id) => {},
    getItem: (id) => {},
 });
@@ -32,7 +32,14 @@ export default function Store({ children }) {
       setItems([...copy]);
    }
 
-   function updateItem(item) {}
+   function updateItem(updateItem) {
+      const copy = [...items];
+      const tmp = copy.find(
+         (item) => item.id === updateItem
+      );
+      tmp = updateItem;
+      setItems([...copy]);
+   }
 
    function removeItem(id) {}
    function getItem(id) {
